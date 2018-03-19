@@ -1,0 +1,958 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css">
+#ausgabe {
+	position: fixed;
+	top:0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	background-color: #001a00;
+	padding-top: 80px;
+}
+#spielerBlatt {
+	position: absolute;
+	left: 0% ;
+	right: 0% ;
+	bottom: 0px;
+	height: 200px;
+	outline: 1px solid #f00;
+	background-color: rgba(0,200,0,0.5);
+	padding-top: 8px;
+	padding-bottom: 80px;
+	}
+	
+	
+#notation {
+	position: absolute;
+	left: 85px;
+	right: 0%;
+	top: 70px;
+	width: 250px;
+	outline: 1px solid #f00;
+	background-color: white;
+	height: 500px;
+	padding: 10px;
+	background-color: #ddffd8;}
+	
+	
+#dealerBlatt {
+	position: absolute;
+	left: 0% ;
+	right: 0% ;
+	top: 0px;
+	height: 200px;
+	outline: 1px solid #f00;
+	outline-offset: 10px;
+	padding-bottom: 8px;
+	padding-top: 80px;
+	
+}
+.innen {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100px;
+}
+.karte {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 132px;
+	height: 186px;
+	background-image : url("kartendeck.jpg");
+	
+	-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+}
+
+
+.karte2 {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 132px;
+	height: 186px;
+	background-image : url("kartendeck.jpg");
+	
+	-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+}
+
+
+
+
+
+#ui1 {
+	position: absolute;
+	bottom: 145px;
+	left: 100px;
+	
+	-moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	-webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+	background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+	background-color:#768d87;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+	
+}
+
+
+#ui1:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+	background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+	background-color:#6c7c7c;
+}
+
+#ui2 {
+	position: absolute;
+	bottom: 145px;
+	left: 300px;
+	
+	-moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	-webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+	background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+	background-color:#768d87;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+	
+}
+
+
+#ui2:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+	background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+	background-color:#6c7c7c;
+}
+
+
+#spielerstand {
+
+	position: absolute;
+	right: 48%;
+	bottom: 15px;
+	font-size: 40pt;
+	color:  #ffffff;
+
+}
+
+#dealerstand {
+
+	position: absolute;
+	right: 48%;
+	top: 15px;
+	font-size: 40pt;
+	color:  #ffffff;
+
+}
+
+#schrift1 {
+
+	position: absolute;
+	left: 28%;
+	bottom: 225px;
+	font-size: 12pt;
+	color: #999999;
+	
+
+}
+
+#schrift2 {
+
+	position: absolute;
+	left: 28%;
+	top: 225px;
+	font-size: 12pt;
+	color: #999999;
+}
+
+#ergebnis {
+	position: absolute;
+	font-size: 76px;
+	color: #99ff99;
+	top: 43%;
+	left: 48%;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+#ergebnisspieler {
+	position: absolute;
+	font-size: 25px;
+	color: #999999;
+	top: 47%;
+	left: 42%;
+	
+
+}
+
+</style>
+
+<script type="text/javascript">
+
+window.onload = function(){
+
+	document.querySelector ( '#ui1' ).onclick = weitereRunde;
+	document.querySelector ( '#ui2' ).onclick = ZugDealer;
+	document.querySelector ( '#ui2' ).onclick = stehennotation;
+	
+	
+	
+	
+		function knoepfeaus(){
+		
+	document.querySelector ( '#ui1' ).onclick = false;
+	document.querySelector ( '#ui2' ).onclick = false;
+	
+		}
+		
+		
+				function knoepfean(){
+		
+	document.querySelector ( '#ui1' ).onclick = weitereRunde;
+	document.querySelector ( '#ui2' ).onclick = ZugDealer;
+	
+		}
+		
+	//knoepfeaus();
+	//knoepfean();
+	
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+
+		var divergebnis = document.querySelector ( '#ergebnis' );
+		var divnotation = document.querySelector ( '#notation' );
+
+	
+	
+	function stehennotation(){
+		var divnotation = document.querySelector ( '#notation' );
+		divnotation.innerHTML += '<b>' + (AnzRunden) + '</b>. Spieler bleibt stehen.<br>';
+		funkcounter += 1;
+		ZugDealer();
+	}
+	
+	function verl(){divnotation.innerHTML += 'Spieler verliert.<br>';}
+	
+	
+	
+	var ausgabe = document.querySelector('#ausgabe');
+	
+	// console.log (document.querySelector ( '#weiter' ).onclick );
+
+	var meineHand = [];
+
+	var DealerHand = [];
+	
+	var hoehe = 186;
+	var breite = 132;
+		
+	//var Deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Bube', 'Dame', 'König', 'Ass']
+	var werte = [{
+			bez: 'Zwei',
+			wert: 2
+		},{
+			bez: 'Drei',
+			wert: 3
+		},{
+			bez: 'Vier',
+			wert: 4
+		},{
+			bez: 'Fünf',
+			wert: 5
+		},{
+			bez: 'Sechs',
+			wert: 6
+		},{
+			bez: 'Sieben',
+			wert: 7
+		},{
+			bez: 'Acht',
+			wert: 8
+		},{
+			bez: 'Neun',
+			wert: 9
+		},{
+			bez: 'Zehn',
+			wert: 10
+		},{
+			bez: 'Bube',
+			wert: 10
+		},{
+			bez: 'Dame',
+			wert: 10
+		},{
+			bez: 'König',
+			wert: 10
+		},{
+			bez: 'Ass',
+			wert: 11
+		}];
+		
+	var farben = ['Karo', 'Herz', 'Pik', 'Kreuz'];
+
+	var deck = [];
+
+	for ( var i = 0; i < werte.length; i++ ){
+		for ( var j = 0; j < farben.length; j++ ){
+			deck.push ( {
+				bez: werte[i].bez,
+				wert: werte[i].wert,
+				farbe: farben[j]
+			})
+		}
+	}
+
+
+
+
+	var deck6 = [];
+	for ( var i = 0; i < 6; i++ ){
+		deck6 = deck6.concat ( deck );
+	}
+
+	function KarteZiehen (wieoft, zuwelcherHand) {
+
+		i = 0;
+
+		while(i < wieoft){
+		
+			
+			var zindex = Math.floor(Math.random()*deck.length);
+		
+			Karte = deck6[zindex];
+			
+			var spalte = (zindex - (Math.floor(zindex/13)*13));				// Welche Spalte
+			// var stapel = Math.floor(zindex/52)+1
+			var zeile = (Math.floor((zindex)/13))%4;		                    // Welche Zeile
+			
+			
+			
+			
+			// var h = 0;
+			
+			/*
+			
+			var SpielerKarten = [];
+			
+			for (var d = 0; d < zuwelcherHand.length; d++){
+			
+			for (var e = 0; e < werte.length; e++){
+			
+			if (zuwelcherHand[d].bez == werte[e].bez)
+			
+			
+			
+			{
+			
+			// h += 1;
+			
+			SpielerKarten.push(e);
+			SpielerKarten.push(farben.indexOf(e));
+			
+			}
+			
+			
+			}
+			
+
+			
+			
+			}
+			
+			
+			
+			
+			*/
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//document.write('Spaltenindex: ' + spalte + ' Zeilenindex: ' + zeile + '<br><br>');
+		
+			// document.write(Karte + '<br>')						
+		
+			deck6.splice(zindex, 1);							// Die gezogene Karte wird vom Deck entfernt
+		
+			zuwelcherHand.push(Karte);
+			
+			
+		
+			
+			
+			var SpielerKarten = [];
+			
+			for (var d = 0; d < zuwelcherHand.length; d++){
+				
+				zuwelcherHand[d].y = 0;
+				if ( zuwelcherHand[d].farbe == 'Karo') zuwelcherHand[d].y = hoehe * 0;
+				else if ( zuwelcherHand[d].farbe == 'Kreuz') zuwelcherHand[d].y = hoehe * 1;
+				else if ( zuwelcherHand[d].farbe == 'Herz') zuwelcherHand[d].y = hoehe * 2;
+				else if ( zuwelcherHand[d].farbe == 'Pik') zuwelcherHand[d].y = hoehe * 3;
+			
+				zuwelcherHand[d].x = 0;
+				if ( zuwelcherHand[d].bez == 'Zwei') zuwelcherHand[d].x = breite * 0;
+				else if ( zuwelcherHand[d].bez == 'Drei') zuwelcherHand[d].x = breite * 1;
+				else if ( zuwelcherHand[d].bez == 'Vier') zuwelcherHand[d].x = breite * 2;
+				else if ( zuwelcherHand[d].bez == 'Fünf') zuwelcherHand[d].x = breite * 3;
+				else if ( zuwelcherHand[d].bez == 'Sechs') zuwelcherHand[d].x = breite * 4;
+				else if ( zuwelcherHand[d].bez == 'Sieben') zuwelcherHand[d].x = breite * 5;
+				else if ( zuwelcherHand[d].bez == 'Acht') zuwelcherHand[d].x = breite * 6;
+				else if ( zuwelcherHand[d].bez == 'Neun') zuwelcherHand[d].x = breite * 7;
+				else if ( zuwelcherHand[d].bez == 'Zehn') zuwelcherHand[d].x = breite * 8;
+				else if ( zuwelcherHand[d].bez == 'Bube') zuwelcherHand[d].x = breite * 9;
+				else if ( zuwelcherHand[d].bez == 'Dame') zuwelcherHand[d].x = breite * 10;
+				else if ( zuwelcherHand[d].bez == 'König') zuwelcherHand[d].x = breite * 11;
+				else zuwelcherHand[d].x = breite * 12;
+				
+				/*
+				for (var e = 0; e < werte.length; e++){
+				
+					if (zuwelcherHand[d].bez == werte[e].bez){
+						
+						// h += 1;
+						
+						SpielerKarten.push(e);
+						SpielerKarten.push(farben.indexOf(e));
+					
+					}	
+				}
+				*/
+			}
+			
+			
+			
+			
+			
+			
+			//zuwelcherHand[i].yindex = zindex;  // NEU: hier wird dem Objekt, das die Karte enthält, der Index vom großen - zu Beginn - 312-Karten-Stapel als Eingeschaft hinzugefügt
+			
+			i = i + 1;
+		}	
+		return zuwelcherHand;
+	}
+
+
+	function Punktestand(welcherHand){
+
+		var i = 0;
+		var summe = 0;
+
+		while(i < welcherHand.length){
+
+		summe = summe + welcherHand[i].wert;
+		
+		
+		
+		i = i + 1;
+		
+		}
+		
+		
+			if (summe > 21){
+			
+				for (var q = 0; q < welcherHand.length; q++){
+			
+				if (welcherHand[q].bez.includes('Ass')){
+			
+				 welcherHand[q].wert = 1;
+				 welcherHand[q].bez = 'Verändert';
+				break;
+				}
+				}
+			}
+		
+		return summe;
+
+
+	}
+
+	var funkcounter = 0;
+	function zeigePunktestand(){
+		
+		
+		funkcounter += 1;
+		
+
+		// ausgabe.innerHTML +=  'Punktestand -  Du: ' + Punktestand(meineHand) + ' :::::: Dealer: ' + Punktestand(DealerHand) + '<br><br><br>';
+		
+		var divspielerstand = document.querySelector ( '#spielerstand' );
+		divspielerstand.innerHTML = Punktestand(meineHand);
+		
+		var divdealerstand = document.querySelector ( '#dealerstand' );
+		divdealerstand.innerHTML = Punktestand(DealerHand);
+		
+		
+
+		var divnotation = document.querySelector ( '#notation' );
+		
+		if (meineHand.length > funkcounter && funkcounter > 1){
+			
+			divnotation.innerHTML += '<b>' + (AnzRunden - 1) + '. </b>Spieler nimmt weitere Karte.<br>'
+					
+		if (meineHand[meineHand.length - 1].wert < 10 || meineHand[meineHand.length - 1].bez == 'Zehn'){
+			
+			divnotation.innerHTML += '+ ' + meineHand[meineHand.length - 1].wert + ' = ' + Punktestand(meineHand) + '.<br>'
+					
+		}else {
+			
+			divnotation.innerHTML += '+ ' + meineHand[meineHand.length - 1].bez + ' (' + meineHand[meineHand.length - 1].wert + ') = ' + Punktestand(meineHand) + '.<br>';}
+		
+		
+		}
+		
+		if (meineHand.length <= funkcounter && funkcounter > 1){
+		
+		divnotation.innerHTML += '<b>' + (AnzRunden) + '. </b>Dealer nimmt eine Karte.<br>'
+					
+		if (DealerHand[DealerHand.length - 1].wert < 10 || DealerHand[DealerHand.length - 1].bez == 'Zehn'){
+					
+			divnotation.innerHTML += '+ ' + DealerHand[DealerHand.length - 1].wert + ' = ' + Punktestand(DealerHand) + '.<br>'
+					
+		}else {
+		
+			divnotation.innerHTML += '+ ' + DealerHand[DealerHand.length - 1].bez + ' (' + DealerHand[DealerHand.length - 1].wert + ') = ' + Punktestand(DealerHand) + '.<br>';
+		
+		}
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		var divSpielerBlatt = document.querySelector ( '#spielerBlatt .innen' );
+		divSpielerBlatt.innerHTML = '';
+		
+		for (var s = 0; s < meineHand.length; s++){
+			
+			var karte = document.createElement ( 'div' );
+			karte.classList.add ( 'karte' );
+			//karte.style.backgroundPosition = -132*(meineHand[s].yindex - (Math.floor(meineHand[s].yindex/13)*13)) + 'px' + -186*((Math.floor((meineHand[s].yindex)/13))%4) + 'px';
+			karte.style.backgroundPosition = '-' + meineHand[s].x + 'px -' + meineHand[s].y + 'px';
+			karte.style.left = s * 100 + 'px';
+			karte.style.top = Math.floor ( Math.random() * 20 ) + 'px';
+			divSpielerBlatt.appendChild ( karte );
+			
+		}	
+
+		
+		var divDealerBlatt = document.querySelector ( '#DealerBlatt .innen' );
+		divDealerBlatt.innerHTML = '';
+
+		for (var r = 0; r < DealerHand.length; r++){
+			
+			var karte2 = document.createElement ( 'div' );
+			karte2.classList.add ( 'karte2' );
+			//karte.style.backgroundPosition = -132*(DealerHand[s].yindex - (Math.floor(DealerHand[s].yindex/13)*13)) + 'px' + -186*((Math.floor((DealerHand[s].yindex)/13))%4) + 'px';
+			karte2.style.backgroundPosition = '-' + DealerHand[r].x + 'px -' + DealerHand[r].y + 'px';
+			karte2.style.left = r * 100 + 'px';
+			karte2.style.top = Math.floor ( Math.random() * 20 ) + 'px';
+			divDealerBlatt.appendChild ( karte2 );
+			
+		}	
+
+
+
+		// ausgabe.innerHTML +=  'Die Hand des Dealers: ' + JSON.stringify(DealerHand, null, 4) + '<br><br>';
+		/*
+		for (var t = 0; t < DealerHand.length; t++){
+			
+			var karte = document.createElement ( 'div' );
+			karte.classList.add ( 'karte' );
+			//karte.style.backgroundPosition = -132*(DealerHand[s].yindex - (Math.floor(DealerHand[s].yindex/13)*13)) + 'px' + -186*((Math.floor((DealerHand[s].yindex)/13))%4) + 'px';
+			karte.style.backgroundPosition = -132 + 'px' + -186 + 'px';
+			ausgabe.appendChild ( karte );
+			
+		}
+*/
+	}
+
+	
+
+	function runde1 () {
+		KarteZiehen(2, meineHand);
+
+		KarteZiehen(1, DealerHand);
+		
+		//ausgabe.innerHTML +=  '### RUNDE 1 ###' + '<br><br>';
+		
+		var divnotation = document.querySelector ( '#notation' );
+		// divnotation.innerHTML += '1. Spieler (S): ' + meineHand[0].bez + ' (' + meineHand[0].wert + '), ' + meineHand[1].bez + ' (' + meineHand[1].wert + ') = ' + Punktestand(meineHand) + '; <br>' + '    ' + 'Dealer (D): ' + DealerHand[0].bez + ' (' + DealerHand[0].wert + ') = ' + Punktestand(DealerHand) + '.'
+					
+					
+		divnotation.innerHTML += '<b>1.</b> Starthände: <br> Spieler: '
+					
+					
+					
+		if (meineHand[0].wert < 10 || meineHand[0].bez == 'Zehn'){
+					
+			divnotation.innerHTML += meineHand[0].wert + ' + '
+					
+		}else {
+		
+			divnotation.innerHTML += meineHand[0].bez + ' (' + meineHand[0].wert + ') + '
+			
+		}
+					
+		if (meineHand[1].wert < 10 || meineHand[1].bez == 'Zehn'){
+					
+			divnotation.innerHTML += meineHand[1].wert + ' = ' + Punktestand(meineHand) + '.<br>'
+					
+		}else {
+		
+			divnotation.innerHTML += meineHand[1].bez + ' (' + meineHand[1].wert + ') = ' + Punktestand(meineHand) + '.<br>'
+		
+		}
+					
+					
+		divnotation.innerHTML += 'Dealer: '
+					
+		if (DealerHand[0].wert < 10 || DealerHand[0].bez == 'Zehn'){
+					
+			divnotation.innerHTML += DealerHand[0].wert + '.<br>'
+					
+		} else {
+		
+			divnotation.innerHTML += DealerHand[0].bez + ' (' + DealerHand[0].wert + ').<br>'
+					
+		}
+					
+					
+					
+					
+		// ausgabe.innerHTML +=   'Meine Hand: ' + JSON.stringify(meineHand, null, 4) + '<br><br>';
+		
+		var divergebnis = document.querySelector ( '#ergebnis' );
+		divergebnis.innerHTML = '';
+				
+		var divergebnisspieler = document.querySelector ( '#ergebnisspieler' );
+		divergebnisspieler.innerHTML = '';
+		
+		
+		if (Punktestand(meineHand) == 21 ){
+		
+			divergebnisspieler.innerHTML = 'Spieler hat';
+			divergebnis.innerHTML = 'Blackjack';
+			divnotation.innerHTML += 'Spieler hat Blackjack.<br>';
+		
+		}
+		
+		zeigePunktestand();
+		
+		GewinnAbfrage()
+		
+	}
+
+	var AnzRunden = 2;
+	
+	function weitereRunde(){
+	//Punktestand=42;
+		//console.log ( Punktestand + ' Punkte');
+		
+		KarteZiehen(1, meineHand);
+			
+		if (Punktestand(meineHand) < 21){
+			
+			//zeigePunktestand();
+			neueAnzeige()
+		
+		} else if (Punktestand(meineHand) == 21 ){
+			
+		
+		// alert ( 'BLACKJACK!' );
+		neueAnzeige()
+			
+		} else {
+		
+			GewinnAbfrage()
+		
+			// alert ( 'Leider verloren!' );
+			
+			
+			/*
+			for (var n = 0; n < meineHand.length; n++){
+			
+			if (meineHand[n].bez.includes("Ass")){
+			
+			meineHand[n].wert = 1;
+			}	
+			} */
+			
+			
+			neueAnzeige()
+		}
+
+
+	} 
+	
+	
+	var l = 2;
+	
+	function neueAnzeige(){
+	
+	
+		//ausgabe.innerHTML +=  '### RUNDE ' + AnzRunden + ' ###' + '<br><br>';
+		
+		AnzRunden += 1; 
+
+		// ausgabe.innerHTML +=   'Neue Karte: ' + JSON.stringify(meineHand[l], null, 4) + '<br><br>';
+		
+		zeigePunktestand();
+		
+		l = l + 1;
+	
+	
+	}
+	
+		var m = 1
+		
+		function neueAnzeigeDealer(){
+	
+	
+		//ausgabe.innerHTML +=  '### RUNDE ' + AnzRunden + ' ###' + '<br><br>';
+		
+		AnzRunden += 1; 
+
+		//ausgabe.innerHTML +=   'Neue Karte: ' + JSON.stringify(DealerHand[m], null, 4) + '<br><br>';
+		
+		zeigePunktestand();
+		
+		m = m + 1;
+	
+	
+	}
+	
+	
+	function ZugDealer(){
+	
+	KarteZiehen(1, DealerHand);
+	
+	neueAnzeigeDealer();
+	
+	if (Punktestand(DealerHand) < 17){
+	
+	//zeigePunktestand();
+	
+	ZugDealer();
+	
+	} else if (Punktestand(DealerHand) < 21){
+	
+	
+		GewinnAbfrage()
+	
+		// alert ('Vergleiche Dealer und Spieler: Spieler: ' + Punktestand(meineHand) + '; Dealer: ' + Punktestand(DealerHand));
+	
+	} else if (Punktestand(DealerHand) == 21){
+		
+		
+		GewinnAbfrage()
+		 //alert ('Dealer hat BJ - Spieler: ' + Punktestand(meineHand) + '; Dealer: ' + Punktestand(DealerHand)) 
+	
+	} else {
+	
+	
+		GewinnAbfrage()
+		
+		//alert('Dealer hat sich überkauft - Spieler: ' + Punktestand(meineHand) + '; Dealer: ' + Punktestand(DealerHand))
+			
+			/*
+			for (var p = 0; p < DealerHand.length; p++){
+			
+			if (DealerHand[p].bez.includes("Ass")){
+			
+			DealerHand[p].wert = 1;
+			}
+			
+			
+			} */
+	
+	}
+		
+	
+	
+	
+	}
+	
+	
+	
+		function GewinnAbfrage(){
+		
+				var divergebnis = document.querySelector ( '#ergebnis' );
+				//divergebnis.innerHTML = '';
+				
+				var divergebnisspieler = document.querySelector ( '#ergebnisspieler' );
+				// divergebnisspieler.innerHTML = '';
+		
+		if (Punktestand(meineHand) < 22){
+	
+		if (Punktestand(DealerHand) > 16){
+		
+		if (Punktestand(DealerHand) > Punktestand(meineHand) && (Punktestand(DealerHand) < 22)){
+		
+			
+			
+				divergebnisspieler.innerHTML = 'Spieler';
+				divergebnis.innerHTML = 'verliert';
+				setTimeout(verl, 0.3);
+
+		}
+		
+		else if (Punktestand(DealerHand) == Punktestand(meineHand)){
+			divergebnis.innerHTML = 'Unentschieden';
+			divnotation.innerHTML += 'Unentschieden.<br>';
+		
+		}
+		
+		else {	
+				divergebnisspieler.innerHTML = 'Spieler';
+				divergebnis.innerHTML = 'gewinnt';
+				divnotation.innerHTML += 'Spieler gewinnt.<br>';
+				}
+				
+				
+	
+	}
+	}
+	
+	else {				
+						divergebnisspieler.innerHTML = 'Spieler';
+						divergebnis.innerHTML = 'verliert';
+						setTimeout(verl, 0.3);
+						}
+						
+			if (divergebnis.innerHTML == 'gewinnt' || divergebnis.innerHTML == 'verliert' || divergebnis.innerHTML == 'Unentschieden' || divergebnis.innerHTML == 'Blackjack') knoepfeaus();
+
+				}
+	
+	runde1();
+	
+	}
+	
+	
+
+
+
+
+
+
+
+
+	
+	
+</script>
+
+</head>
+<body>
+
+<div id="ausgabe">
+	<div id="spielerBlatt">
+		<div class="innen">
+		</div>
+	</div>
+	
+		<div id="DealerBlatt">
+		<div class="innen">
+		</div>
+	</div>
+
+</div>
+<div id="ui1">
+
+	Noch eine Karte
+</div>
+
+<div id="ui2">
+	Stehen bleiben
+</div>
+
+
+<div id="spielerstand">
+0
+</div>
+<!--- <div id="schrift1">Spieler</div> --->
+
+<div id="dealerstand">
+0
+</div>
+<!--- <div id="schrift2">Dealer</div>--->
+
+<div id="ergebnis"></div>
+<div id="ergebnisspieler"></div>
+
+	<div id="notation">
+<u><b>Notation</b></u><br><br>
+	</div>
+
+</body>
+</html>
